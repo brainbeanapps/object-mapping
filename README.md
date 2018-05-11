@@ -32,5 +32,24 @@ yarn add object-mapping
 import 'reflect-metadata'
 import { map, mapping } from 'object-mapping'
 
+export interface Dto {
+  demo_value = ''
+}
 
+export class Model {
+  @mapping('Dto').rename('demo_value')
+  demoValue = ''
+
+  public static fromDto (dto: Dto): Model {
+    return map<Dto, Model>('GetDemoValueResponseDto', Model, dto)
+  }
+
+  public static toDto (object: Model): Dto {
+    return map<Model, Dto>(Model, 'Dto', object)
+  }
+
+  public toDto (): Dto {
+    return Model.toDto(this)
+  }
+}
 ```
