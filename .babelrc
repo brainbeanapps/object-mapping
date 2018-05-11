@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties"
+  ],
+  "env": {
+    "commonjs": {
+      "presets": [
+        "env"
+      ],
+      "ignore": [
+        "**/*.spec.js"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}
