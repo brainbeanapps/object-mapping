@@ -2,7 +2,7 @@
 
 import 'reflect-metadata'
 import { describe, it } from 'mocha'
-import chai from 'chai'
+import chai, { expect } from 'chai'
 import map from './map'
 import mapping from './mapping'
 
@@ -69,5 +69,15 @@ describe('map()', () => {
     const model = map(Dto, Model, dto)
     model.should.be.deep.equal(new Model())
     dto.should.have.property('renamed', 'value')
+  })
+
+  it('should throw if no mapping is set', () => {
+    class Dto {
+      renamed = ''
+    }
+    class Model {
+      field = 'value'
+    }
+    expect(() => map(Model, Dto, new Model())).to.throw(/Mapping can not be found/)
   })
 })

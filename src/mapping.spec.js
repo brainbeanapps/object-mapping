@@ -67,4 +67,19 @@ describe('@mapping()', () => {
     const metadata = Reflect.getMetadata(`${MAPPING_METADATA_KEY}:Dto`, object.prototype)
     expect(metadata).to.be.an('array', [ 'field1', 'field2' ])
   })
+
+  it('should throw on mapping redefinition', () => {
+    expect(() => (class {
+      @mapping('Dto').rename('renamed1')
+      @mapping('Dto').rename('renamed2')
+      field = 'value'
+    })).to.throw(/already defined/)
+  })
+
+  it('should throw on incomplete mapping definition', () => {
+    expect(() => (class {
+      @mapping('Dto')()
+      field = 'value'
+    })).to.throw(/should be defined and should be functions/)
+  })
 })
