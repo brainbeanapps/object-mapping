@@ -1,6 +1,6 @@
 {
   "name": "object-mapping",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A decorator-based object-to-object mapper for TypeScript and ES2016/ES7",
   "keywords": [
     "mapping",
