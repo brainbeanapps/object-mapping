@@ -22,7 +22,7 @@ export interface Mapper<TFromObject, TToObject> {
 
   asIs: Function
   const<TFromValue, TToValue>(from: TFromValue, to: TToValue): Function
-  rename(mappedPropertyName: string): Function
+  rename(mappedPropertyName: keyof TToObject): Function
 }
 
 export function mapping<TFromObject = any, TToObject= any> (
