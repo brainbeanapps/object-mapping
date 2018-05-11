@@ -41,7 +41,7 @@ export class Model {
   demoValue = ''
 
   public static fromDto (dto: Dto): Model {
-    return map<Dto, Model>('GetDemoValueResponseDto', Model, dto)
+    return map<Dto, Model>('Dto', Model, dto)
   }
 
   public static toDto (object: Model): Dto {
