@@ -20,7 +20,9 @@ export default function map (from, to, source) {
   const key = (mapping === to) ? toKey : fromKey
   const mappedProperties = Reflect.getMetadata(key, target)
 
-  let destination = {}
+  let destination = isFunction(to)
+    ? new to() // eslint-disable-line new-cap
+    : {}
   for (const propertyName of mappedProperties) {
     const mapper = Reflect.getMetadata(key, target, propertyName)
 
