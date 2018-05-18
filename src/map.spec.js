@@ -24,6 +24,20 @@ describe('map()', () => {
     dto.should.have.property('renamed', 'value')
   })
 
+  it('should support custom mapping with property name', () => {
+    class Model {
+      @mapping('Dto')(
+        (x, propertyName) => x[propertyName],
+        (x, propertyName) => ({ [propertyName]: x })
+      )
+      field = 'value'
+    }
+    const dto = map(Model, 'Dto', new Model())
+    const model = map('Dto', Model, dto)
+    model.should.be.deep.equal(new Model())
+    dto.should.have.property('field', 'value')
+  })
+
   it('should support as-is mapping', () => {
     class Model {
       @mapping('Dto').asIs

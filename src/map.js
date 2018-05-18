@@ -27,9 +27,9 @@ export default function map (from, to, source) {
     const mapper = Reflect.getMetadata(key, target, propertyName)
 
     if (mapping === to) {
-      destination = Object.assign(destination, mapper.to(source[propertyName]))
+      destination = Object.assign(destination, mapper.to(source[propertyName], propertyName))
     } else /* if (mapping === from) */ {
-      destination = Object.assign(destination, { [propertyName]: mapper.from(source) })
+      destination = Object.assign(destination, { [propertyName]: mapper.from(source, propertyName) })
     }
   }
 

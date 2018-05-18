@@ -5,11 +5,11 @@ export function map<TFromObject = any, TToObject = any> (
 ): TToObject
 
 export interface FromMapper<TObject, TValue> {
-  (x: TObject): TValue
+  (x: TObject, propertyName: string): TValue
 }
 
 export interface ToMapper<TObject, TValue> {
-  (x: TValue): Partial<TObject>
+  (x: TValue, propertyName: string): Partial<TObject>
 }
 
 export interface Mapper<TFromObject, TToObject> {
